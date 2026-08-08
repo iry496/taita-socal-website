@@ -89,6 +89,17 @@
   .nav .btn{padding:9px 18px;font-size:13px}
   .nav-links a.btn{color:#fff;border-bottom:none}
   .nav-links a.btn:hover{color:#fff}
+  .lang-toggle{
+    flex:none;display:inline-flex;align-items:center;gap:6px;
+    padding:8px 11px;border:1px solid var(--line);border-radius:999px;
+    background:#fff;color:#9AA296;cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;
+    letter-spacing:.08em;transition:border-color .2s,box-shadow .2s;
+  }
+  .lang-toggle:hover{border-color:var(--green);box-shadow:0 4px 14px rgba(63,138,60,.12)}
+  .lang-toggle:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+  .lang-toggle .active{color:var(--green-deep);font-weight:700}
+  .lang-divider{color:#C3C9C0}
 
   /* ---------- Hero ---------- */
   .hero{
@@ -165,6 +176,13 @@
     font-size:clamp(1.55rem,3.1vw,2.35rem);
     line-height:1.55;letter-spacing:.02em;color:var(--ink);
   }
+  html[lang="en"] .hero h1,
+  html[lang="en"] .display,
+  html[lang="en"] .card h3{
+    font-family:'Space Grotesk',sans-serif;letter-spacing:-.025em;
+  }
+  html[lang="en"] .hero h1{line-height:1.12}
+  html[lang="en"] .stamp{font-family:'Space Grotesk',sans-serif;letter-spacing:.12em;font-size:12px}
 
   /* About */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
@@ -262,6 +280,7 @@
     .foot-inner{grid-template-columns:1fr;gap:36px}
     .stamp{right:-6px;top:-48px}
     .nav-zh{display:none}
+    .nav-links{gap:12px}
   }
   @media (max-width: 720px){
     .nav-links a:not(.btn){display:none}
@@ -270,6 +289,10 @@
     .section{padding:76px 20px}
     .hero-inner{padding-top:56px}
     .coords{display:none}
+    .nav-inner{padding-left:16px;padding-right:16px}
+    .nav-logo{width:62px;height:36px}
+    .nav .btn{padding:9px 12px;font-size:12px}
+    .lang-toggle{padding:8px 9px;font-size:10px}
   }
 </style>
 </head>
@@ -278,14 +301,17 @@
 <!-- ============ NAV ============ -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#top" class="nav-logo logo-bg" aria-label="TAITA SoCal 首頁"></a>
-    <div class="nav-zh">南加州台美產業科技協會</div>
+    <a href="#top" class="nav-logo logo-bg" aria-label="TAITA SoCal 首頁" data-i18n-aria="homeAria"></a>
+    <div class="nav-zh" data-i18n="orgShort">南加州台美產業科技協會</div>
     <div class="nav-links">
-      <a href="#about">關於</a>
-      <a href="#focus">焦點工作</a>
-      <a href="#events">活動</a>
-      <a href="#contact">聯絡</a>
-      <a href="#join" class="btn btn-green">成為創始會員</a>
+      <a href="#about" data-i18n="navAbout">關於</a>
+      <a href="#focus" data-i18n="navFocus">焦點工作</a>
+      <a href="#events" data-i18n="navEvents">活動</a>
+      <a href="#contact" data-i18n="navContact">聯絡</a>
+      <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to English" aria-pressed="false">
+        <span id="langEn">EN</span><span class="lang-divider" aria-hidden="true">/</span><span id="langZh" class="active">中文</span>
+      </button>
+      <a href="#join" class="btn btn-green" data-i18n="foundingMember">成為創始會員</a>
     </div>
   </div>
 </nav>
@@ -293,23 +319,23 @@
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="hero-inner">
-    <div class="hero-logo logo-bg" role="img" aria-label="TAITA SoCal 會徽"></div>
+    <div class="hero-logo logo-bg" role="img" aria-label="TAITA SoCal 會徽" data-i18n-aria="emblemAria"></div>
     <div class="eyebrow en">TAIWANESE AMERICAN INDUSTRIAL TECHNOLOGY ASSOCIATION</div>
-    <h1>南加州<br>台美產業科技協會
-      <span class="stamp">籌備中</span>
+    <h1><span data-i18n="heroTitle">南加州<br>台美產業科技協會</span>
+      <span class="stamp" data-i18n="preparing">籌備中</span>
     </h1>
-    <p class="lead">我們把 TAITA 二十多年來連結台灣與美國科技產業的橋樑，延伸到南加州。從航太、半導體到生技與娛樂科技——這裡是下一段旅程的起點。</p>
-    <p class="lead-en en">Bridging Taiwan and Southern California — industry, technology, and the people who build both.</p>
+    <p class="lead" data-i18n="heroLead">我們把 TAITA 二十多年來連結台灣與美國科技產業的橋樑，延伸到南加州。從航太、半導體到生技與娛樂科技——這裡是下一段旅程的起點。</p>
+    <p class="lead-en en" data-i18n="heroTagline">Bridging Taiwan and Southern California — industry, technology, and the people who build both.</p>
     <div class="hero-cta">
-      <a href="#join" class="btn btn-green">成為創始會員</a>
-      <a href="#about" class="btn btn-ink">認識 TAITA</a>
+      <a href="#join" class="btn btn-green" data-i18n="foundingMember">成為創始會員</a>
+      <a href="#about" class="btn btn-ink" data-i18n="meetTaita">認識 TAITA</a>
     </div>
     <div class="hero-meta">LOS ANGELES — ORANGE COUNTY — SAN DIEGO · EST. 2026</div>
   </div>
 
   <!-- Signature: TPE ↔ LAX flight arc -->
   <div class="arc-wrap" aria-hidden="true">
-    <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="台北到洛杉磯的航線示意圖">
+    <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="台北到洛杉磯的航線示意圖" data-i18n-aria="flightAria">
       <defs>
         <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0" stop-color="#4E9E48"/>
@@ -333,16 +359,16 @@
       <circle cx="90" cy="200" r="11" fill="none" stroke="rgba(47,52,48,.35)" stroke-width="1.5"/>
       <circle cx="90" cy="200" r="5" fill="#4E9E48"/>
       <text x="70" y="242" fill="#2F3430" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="30">TPE</text>
-      <text x="70" y="268" fill="#5C665A" font-family="'Noto Sans TC',sans-serif" font-size="18">台北 TAIPEI</text>
+      <text x="70" y="268" fill="#5C665A" font-family="'Noto Sans TC',sans-serif" font-size="18" data-i18n="taipei">台北 TAIPEI</text>
       <text class="coords" x="70" y="291" fill="#97A294" font-family="'IBM Plex Mono',monospace" font-size="15">25.08°N 121.23°E</text>
       <!-- LAX endpoint -->
       <circle cx="1110" cy="200" r="11" fill="none" stroke="rgba(47,52,48,.35)" stroke-width="1.5"/>
       <circle cx="1110" cy="200" r="5" fill="#33382F"/>
       <text x="1130" y="242" text-anchor="end" fill="#2F3430" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="30">LAX</text>
-      <text x="1130" y="268" text-anchor="end" fill="#5C665A" font-family="'Noto Sans TC',sans-serif" font-size="18">洛杉磯 LOS ANGELES</text>
+      <text x="1130" y="268" text-anchor="end" fill="#5C665A" font-family="'Noto Sans TC',sans-serif" font-size="18" data-i18n="losAngeles">洛杉磯 LOS ANGELES</text>
       <text class="coords" x="1130" y="291" text-anchor="end" fill="#97A294" font-family="'IBM Plex Mono',monospace" font-size="15">33.94°N 118.41°W</text>
       <!-- ocean label -->
-      <text x="600" y="252" text-anchor="middle" fill="#A3B09F" font-family="'IBM Plex Mono',monospace" font-size="15" letter-spacing="5">太平洋 · PACIFIC OCEAN</text>
+      <text x="600" y="252" text-anchor="middle" fill="#A3B09F" font-family="'IBM Plex Mono',monospace" font-size="15" letter-spacing="5" data-i18n="pacific">太平洋 · PACIFIC OCEAN</text>
     </svg>
   </div>
 </header>
@@ -351,16 +377,16 @@
 <section id="about" class="section">
   <div class="about-grid">
     <div class="reveal">
-      <div class="sec-eyebrow">關於 — ABOUT</div>
-      <h2 class="display">2003 年，TAITA 在矽谷搭起台美科技產業的橋。現在，我們把橋的另一端，架在南加州。</h2>
+      <div class="sec-eyebrow" data-i18n="aboutEyebrow">關於 — ABOUT</div>
+      <h2 class="display" data-i18n="aboutTitle">2003 年，TAITA 在矽谷搭起台美科技產業的橋。現在，我們把橋的另一端，架在南加州。</h2>
     </div>
     <div class="reveal">
-      <p>台美產業科技協會（TAITA）長期促進台灣與美國在產業、科技與投資上的合作。<strong>南加州分會承續這個使命</strong>，立足於大洛杉磯、橘郡與聖地牙哥——這裡有全美最深厚的台美社群，也有航太、半導體、生技醫療、娛樂科技與先進製造的完整聚落。</p>
-      <p>TAITA SoCal 由在地會員籌組、<strong>獨立運作與治理</strong>；同時與矽谷（TAITA-SV）、美東（TAITA-EC）等姊妹分會保持交流，共同壯大跨太平洋的產業網絡。</p>
+      <p data-i18n="aboutP1">台美產業科技協會（TAITA）長期促進台灣與美國在產業、科技與投資上的合作。<strong>南加州分會承續這個使命</strong>，立足於大洛杉磯、橘郡與聖地牙哥——這裡有全美最深厚的台美社群，也有航太、半導體、生技醫療、娛樂科技與先進製造的完整聚落。</p>
+      <p data-i18n="aboutP2">TAITA SoCal 由在地會員籌組、<strong>獨立運作與治理</strong>；同時與矽谷（TAITA-SV）、美東（TAITA-EC）等姊妹分會保持交流，共同壯大跨太平洋的產業網絡。</p>
       <div class="facts">
-        <div class="fact"><div class="k en">STATUS</div><div class="v">2026 籌備啟動</div></div>
+        <div class="fact"><div class="k en">STATUS</div><div class="v" data-i18n="statusValue">2026 籌備啟動</div></div>
         <div class="fact"><div class="k en">REGION</div><div class="v">LA · OC · SD</div></div>
-        <div class="fact"><div class="k en">SISTER CHAPTERS</div><div class="v">矽谷 · 美東</div></div>
+        <div class="fact"><div class="k en">SISTER CHAPTERS</div><div class="v" data-i18n="sisterValue">矽谷 · 美東</div></div>
       </div>
     </div>
   </div>
@@ -369,29 +395,29 @@
 <!-- ============ FOCUS ============ -->
 <section id="focus" class="section" style="padding-top:0">
   <div class="reveal">
-    <div class="sec-eyebrow">焦點工作 — WHAT WE DO</div>
-    <h2 class="display">我們在做的事</h2>
+    <div class="sec-eyebrow" data-i18n="focusEyebrow">焦點工作 — WHAT WE DO</div>
+    <h2 class="display" data-i18n="focusTitle">我們在做的事</h2>
   </div>
   <div class="cards">
     <div class="card reveal">
       <div class="k en">MONTHLY SEMINARS</div>
-      <h3>每月產業講座</h3>
-      <p>從晶片到細胞治療，邀請兩地業界領袖分享第一線的技術與市場觀點。</p>
+      <h3 data-i18n="seminarTitle">每月產業講座</h3>
+      <p data-i18n="seminarText">從晶片到細胞治療，邀請兩地業界領袖分享第一線的技術與市場觀點。</p>
     </div>
     <div class="card reveal">
       <div class="k en">ANNUAL CONFERENCE</div>
-      <h3>年度大會</h3>
-      <p>一年一度，匯聚產業、學研與創投，促成跨太平洋的實質合作。</p>
+      <h3 data-i18n="conferenceTitle">年度大會</h3>
+      <p data-i18n="conferenceText">一年一度，匯聚產業、學研與創投，促成跨太平洋的實質合作。</p>
     </div>
     <div class="card reveal">
       <div class="k en">STARTUPS &amp; TALENT</div>
-      <h3>創業與人才</h3>
-      <p>導師制度與徵才媒合，協助台灣新創與科技人才在南加州落地生根。</p>
+      <h3 data-i18n="talentTitle">創業與人才</h3>
+      <p data-i18n="talentText">導師制度與徵才媒合，協助台灣新創與科技人才在南加州落地生根。</p>
     </div>
     <div class="card reveal">
       <div class="k en">SCHOLARSHIP</div>
-      <h3>獎學金</h3>
-      <p>支持台美學生投入科學與工程，培養下一代的橋樑人物。</p>
+      <h3 data-i18n="scholarshipTitle">獎學金</h3>
+      <p data-i18n="scholarshipText">支持台美學生投入科學與工程，培養下一代的橋樑人物。</p>
     </div>
   </div>
 </section>
@@ -400,12 +426,12 @@
 <div class="band" id="events">
   <section class="section">
     <div class="reveal">
-      <div class="sec-eyebrow">活動 — EVENTS</div>
-      <h2 class="display">成立大會，即將啟程。</h2>
-      <p>我們正在籌備 TAITA SoCal 成立大會與第一場產業論壇。留下 Email，第一時間收到時間與地點。</p>
-      <div class="chip">2026 秋季 · 大洛杉磯地區 · 詳情待公布</div>
+      <div class="sec-eyebrow" data-i18n="eventsEyebrow">活動 — EVENTS</div>
+      <h2 class="display" data-i18n="eventsTitle">成立大會，即將啟程。</h2>
+      <p data-i18n="eventsText">我們正在籌備 TAITA SoCal 成立大會與第一場產業論壇。留下 Email，第一時間收到時間與地點。</p>
+      <div class="chip" data-i18n="eventsChip">2026 秋季 · 大洛杉磯地區 · 詳情待公布</div>
       <div>
-        <a class="btn btn-white" href="mailto:info@taitasocal.org?subject=%E5%8A%A0%E5%85%A5%20TAITA%20SoCal%20%E6%88%90%E7%AB%8B%E9%80%9A%E7%9F%A5%E5%90%8D%E5%96%AE">加入通知名單</a>
+        <a class="btn btn-white" href="mailto:info@taitasocal.org?subject=%E5%8A%A0%E5%85%A5%20TAITA%20SoCal%20%E6%88%90%E7%AB%8B%E9%80%9A%E7%9F%A5%E5%90%8D%E5%96%AE" data-i18n="notifyButton" data-i18n-href="notifyHref">加入通知名單</a>
       </div>
     </div>
   </section>
@@ -414,12 +440,12 @@
 <!-- ============ JOIN ============ -->
 <section id="join" class="section join">
   <div class="reveal">
-    <div class="sec-eyebrow">入會 — JOIN US</div>
-    <h2 class="display">成為創始會員</h2>
-    <p>只要你在南加州從事科技或產業相關工作——工程師、研究員、創業者、投資人、學生——都歡迎加入。創始會員將一起參與分會章程、理事會與第一年活動的規劃。</p>
+    <div class="sec-eyebrow" data-i18n="joinEyebrow">入會 — JOIN US</div>
+    <h2 class="display" data-i18n="foundingMember">成為創始會員</h2>
+    <p data-i18n="joinText">只要你在南加州從事科技或產業相關工作——工程師、研究員、創業者、投資人、學生——都歡迎加入。創始會員將一起參與分會章程、理事會與第一年活動的規劃。</p>
     <div class="join-cta">
-      <a class="btn btn-green" href="mailto:info@taitasocal.org?subject=TAITA%20SoCal%20%E5%85%A5%E6%9C%83%E6%84%8F%E9%A1%98">我要加入</a>
-      <a class="btn btn-ink" href="mailto:info@taitasocal.org?subject=%E4%BC%81%E6%A5%AD%E8%B4%8A%E5%8A%A9%E5%90%88%E4%BD%9C">企業贊助合作</a>
+      <a class="btn btn-green" href="mailto:info@taitasocal.org?subject=TAITA%20SoCal%20%E5%85%A5%E6%9C%83%E6%84%8F%E9%A1%98" data-i18n="joinButton" data-i18n-href="joinHref">我要加入</a>
+      <a class="btn btn-ink" href="mailto:info@taitasocal.org?subject=%E4%BC%81%E6%A5%AD%E8%B4%8A%E5%8A%A9%E5%90%88%E4%BD%9C" data-i18n="sponsorButton" data-i18n-href="sponsorHref">企業贊助合作</a>
     </div>
   </div>
 </section>
@@ -428,36 +454,149 @@
 <footer id="contact">
   <div class="foot-inner">
     <div class="foot-org">
-      <div class="foot-logo"><div class="logo-bg" role="img" aria-label="TAITA SoCal 會徽"></div></div>
+      <div class="foot-logo"><div class="logo-bg" role="img" aria-label="TAITA SoCal 會徽" data-i18n-aria="emblemAria"></div></div>
       <div class="names">
         <b class="en">TAITA SoCal</b>
-        <span>南加州台美產業科技協會<br>Southern California Taiwanese American<br>Industrial Technology Association</span>
+        <span data-i18n="footerOrg">南加州台美產業科技協會<br>Southern California Taiwanese American<br>Industrial Technology Association</span>
       </div>
     </div>
     <div class="foot">
       <h4>SITE</h4>
       <ul>
-        <li><a href="#about">關於我們</a></li>
-        <li><a href="#focus">焦點工作</a></li>
-        <li><a href="#events">活動</a></li>
-        <li><a href="#join">入會</a></li>
+        <li><a href="#about" data-i18n="footerAbout">關於我們</a></li>
+        <li><a href="#focus" data-i18n="navFocus">焦點工作</a></li>
+        <li><a href="#events" data-i18n="navEvents">活動</a></li>
+        <li><a href="#join" data-i18n="footerJoin">入會</a></li>
       </ul>
     </div>
     <div class="foot">
       <h4>CONTACT</h4>
       <ul>
         <li><a href="mailto:info@taitasocal.org" class="mono" style="font-size:13px">info@taitasocal.org</a></li>
-        <li><span style="color:rgba(255,255,255,.55);font-size:13px">大洛杉磯 · 橘郡 · 聖地牙哥</span></li>
+        <li><span style="color:rgba(255,255,255,.55);font-size:13px" data-i18n="region">大洛杉磯 · 橘郡 · 聖地牙哥</span></li>
       </ul>
     </div>
   </div>
   <div class="foot-bottom">
     <span>© 2026 TAITA SOUTHERN CALIFORNIA</span>
-    <span>連結南加州與台灣的產業、科技與人</span>
+    <span data-i18n="footerTagline">連結南加州與台灣的產業、科技與人</span>
   </div>
 </footer>
 
 <script>
+  const translations = {
+    zh: {
+      pageTitle: 'TAITA SoCal｜南加州台美產業科技協會',
+      description: '南加州台美產業科技協會 (TAITA SoCal) — 連結南加州與台灣的產業、科技與人。',
+      ogDescription: '連結南加州與台灣的產業、科技與人。',
+      homeAria: 'TAITA SoCal 首頁',
+      emblemAria: 'TAITA SoCal 會徽',
+      orgShort: '南加州台美產業科技協會',
+      navAbout: '關於', navFocus: '焦點工作', navEvents: '活動', navContact: '聯絡',
+      foundingMember: '成為創始會員', meetTaita: '認識 TAITA', preparing: '籌備中',
+      heroTitle: '南加州<br>台美產業科技協會',
+      heroLead: '我們把 TAITA 二十多年來連結台灣與美國科技產業的橋樑，延伸到南加州。從航太、半導體到生技與娛樂科技——這裡是下一段旅程的起點。',
+      heroTagline: 'Bridging Taiwan and Southern California — industry, technology, and the people who build both.',
+      flightAria: '台北到洛杉磯的航線示意圖', taipei: '台北 TAIPEI', losAngeles: '洛杉磯 LOS ANGELES', pacific: '太平洋 · PACIFIC OCEAN',
+      aboutEyebrow: '關於 — ABOUT',
+      aboutTitle: '2003 年，TAITA 在矽谷搭起台美科技產業的橋。現在，我們把橋的另一端，架在南加州。',
+      aboutP1: '台美產業科技協會（TAITA）長期促進台灣與美國在產業、科技與投資上的合作。<strong>南加州分會承續這個使命</strong>，立足於大洛杉磯、橘郡與聖地牙哥——這裡有全美最深厚的台美社群，也有航太、半導體、生技醫療、娛樂科技與先進製造的完整聚落。',
+      aboutP2: 'TAITA SoCal 由在地會員籌組、<strong>獨立運作與治理</strong>；同時與矽谷（TAITA-SV）、美東（TAITA-EC）等姊妹分會保持交流，共同壯大跨太平洋的產業網絡。',
+      statusValue: '2026 籌備啟動', sisterValue: '矽谷 · 美東',
+      focusEyebrow: '焦點工作 — WHAT WE DO', focusTitle: '我們在做的事',
+      seminarTitle: '每月產業講座', seminarText: '從晶片到細胞治療，邀請兩地業界領袖分享第一線的技術與市場觀點。',
+      conferenceTitle: '年度大會', conferenceText: '一年一度，匯聚產業、學研與創投，促成跨太平洋的實質合作。',
+      talentTitle: '創業與人才', talentText: '導師制度與徵才媒合，協助台灣新創與科技人才在南加州落地生根。',
+      scholarshipTitle: '獎學金', scholarshipText: '支持台美學生投入科學與工程，培養下一代的橋樑人物。',
+      eventsEyebrow: '活動 — EVENTS', eventsTitle: '成立大會，即將啟程。',
+      eventsText: '我們正在籌備 TAITA SoCal 成立大會與第一場產業論壇。留下 Email，第一時間收到時間與地點。',
+      eventsChip: '2026 秋季 · 大洛杉磯地區 · 詳情待公布', notifyButton: '加入通知名單',
+      notifyHref: 'mailto:info@taitasocal.org?subject=%E5%8A%A0%E5%85%A5%20TAITA%20SoCal%20%E6%88%90%E7%AB%8B%E9%80%9A%E7%9F%A5%E5%90%8D%E5%96%AE',
+      joinEyebrow: '入會 — JOIN US', joinText: '只要你在南加州從事科技或產業相關工作——工程師、研究員、創業者、投資人、學生——都歡迎加入。創始會員將一起參與分會章程、理事會與第一年活動的規劃。',
+      joinButton: '我要加入', sponsorButton: '企業贊助合作',
+      joinHref: 'mailto:info@taitasocal.org?subject=TAITA%20SoCal%20%E5%85%A5%E6%9C%83%E6%84%8F%E9%A1%98',
+      sponsorHref: 'mailto:info@taitasocal.org?subject=%E4%BC%81%E6%A5%AD%E8%B4%8A%E5%8A%A9%E5%90%88%E4%BD%9C',
+      footerOrg: '南加州台美產業科技協會<br>Southern California Taiwanese American<br>Industrial Technology Association',
+      footerAbout: '關於我們', footerJoin: '入會', region: '大洛杉磯 · 橘郡 · 聖地牙哥',
+      footerTagline: '連結南加州與台灣的產業、科技與人'
+    },
+    en: {
+      pageTitle: 'TAITA SoCal | Taiwanese American Industrial Technology Association',
+      description: 'TAITA SoCal connects the industries, technologies, and people of Taiwan and Southern California.',
+      ogDescription: 'Connecting the industries, technologies, and people of Taiwan and Southern California.',
+      homeAria: 'TAITA SoCal home',
+      emblemAria: 'TAITA SoCal emblem',
+      orgShort: 'TAITA Southern California',
+      navAbout: 'About', navFocus: 'What We Do', navEvents: 'Events', navContact: 'Contact',
+      foundingMember: 'Become a Founding Member', meetTaita: 'Meet TAITA', preparing: 'COMING SOON',
+      heroTitle: 'TAITA<br>Southern California',
+      heroLead: 'For more than two decades, TAITA has connected Taiwan and the United States through technology and industry. We are extending that bridge to Southern California—from aerospace and semiconductors to biotech and entertainment technology.',
+      heroTagline: 'Bridging Taiwan and Southern California — industry, technology, and the people who build both.',
+      flightAria: 'Flight route from Taipei to Los Angeles', taipei: 'TAIPEI', losAngeles: 'LOS ANGELES', pacific: 'PACIFIC OCEAN',
+      aboutEyebrow: 'ABOUT',
+      aboutTitle: 'TAITA built a bridge between Taiwan and Silicon Valley in 2003. Now that bridge is reaching Southern California.',
+      aboutP1: 'The Taiwanese American Industrial Technology Association (TAITA) advances collaboration between Taiwan and the United States in industry, technology, and investment. <strong>TAITA SoCal carries that mission forward</strong> across Greater Los Angeles, Orange County, and San Diego—home to a thriving Taiwanese American community and world-class clusters in aerospace, semiconductors, biotech, entertainment technology, and advanced manufacturing.',
+      aboutP2: 'TAITA SoCal is organized by local members with <strong>independent operations and governance</strong>. We also collaborate with sister chapters in Silicon Valley (TAITA-SV) and the East Coast (TAITA-EC) to strengthen a shared trans-Pacific industry network.',
+      statusValue: 'Launching in 2026', sisterValue: 'Silicon Valley · East Coast',
+      focusEyebrow: 'WHAT WE DO', focusTitle: 'How we build connections',
+      seminarTitle: 'Monthly Industry Seminars', seminarText: 'From chips to cell therapy, industry leaders from both sides of the Pacific share frontline technology and market insights.',
+      conferenceTitle: 'Annual Conference', conferenceText: 'Our signature gathering brings together industry, academia, research, and venture capital to turn conversations into trans-Pacific collaboration.',
+      talentTitle: 'Startups &amp; Talent', talentText: 'Mentorship and recruiting connections help Taiwanese startups and technology professionals establish roots in Southern California.',
+      scholarshipTitle: 'Scholarships', scholarshipText: 'We support Taiwanese American students pursuing science and engineering—and nurture the bridge-builders of the next generation.',
+      eventsEyebrow: 'EVENTS', eventsTitle: 'Our launch event is taking flight.',
+      eventsText: 'We are preparing the TAITA SoCal launch celebration and our first industry forum. Join the email list to be the first to receive the date and location.',
+      eventsChip: 'FALL 2026 · GREATER LOS ANGELES · DETAILS TO COME', notifyButton: 'Join the Email List',
+      notifyHref: 'mailto:info@taitasocal.org?subject=TAITA%20SoCal%20Launch%20Updates',
+      joinEyebrow: 'JOIN US', joinText: 'If you work or study in technology or industry in Southern California—as an engineer, researcher, founder, investor, or student—you are welcome here. Founding members will help shape our bylaws, board, and first year of programming.',
+      joinButton: 'I Want to Join', sponsorButton: 'Corporate Sponsorship',
+      joinHref: 'mailto:info@taitasocal.org?subject=TAITA%20SoCal%20Membership%20Interest',
+      sponsorHref: 'mailto:info@taitasocal.org?subject=TAITA%20SoCal%20Corporate%20Sponsorship',
+      footerOrg: 'Southern California Chapter<br>Taiwanese American Industrial<br>Technology Association',
+      footerAbout: 'About Us', footerJoin: 'Membership', region: 'Greater Los Angeles · Orange County · San Diego',
+      footerTagline: 'Connecting Southern California and Taiwan through industry, technology, and people'
+    }
+  };
+
+  const langToggle = document.getElementById('langToggle');
+  const langEn = document.getElementById('langEn');
+  const langZh = document.getElementById('langZh');
+
+  function applyLanguage(lang) {
+    const selected = translations[lang] ? lang : 'zh';
+    const copy = translations[selected];
+    document.documentElement.lang = selected === 'zh' ? 'zh-Hant' : 'en';
+    document.title = copy.pageTitle;
+    document.querySelector('meta[name="description"]').content = copy.description;
+    document.querySelector('meta[property="og:title"]').content = copy.pageTitle;
+    document.querySelector('meta[property="og:description"]').content = copy.ogDescription;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const value = copy[el.dataset.i18n];
+      if (value !== undefined) el.innerHTML = value;
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const value = copy[el.dataset.i18nAria];
+      if (value !== undefined) el.setAttribute('aria-label', value);
+    });
+    document.querySelectorAll('[data-i18n-href]').forEach(el => {
+      const value = copy[el.dataset.i18nHref];
+      if (value !== undefined) el.setAttribute('href', value);
+    });
+    const isZh = selected === 'zh';
+    langZh.classList.toggle('active', isZh);
+    langEn.classList.toggle('active', !isZh);
+    langToggle.setAttribute('aria-pressed', String(isZh));
+    langToggle.setAttribute('aria-label', isZh ? 'Switch to English' : '切換為繁體中文');
+    try { localStorage.setItem('taita-language', selected); } catch (error) { /* storage may be unavailable */ }
+  }
+
+  let savedLanguage = null;
+  try { savedLanguage = localStorage.getItem('taita-language'); } catch (error) { /* storage may be unavailable */ }
+  const browserLanguage = navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
+  applyLanguage(savedLanguage || browserLanguage);
+  langToggle.addEventListener('click', () => {
+    applyLanguage(document.documentElement.lang === 'zh-Hant' ? 'en' : 'zh');
+  });
+
   // Scroll reveal
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) {
