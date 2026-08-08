@@ -134,16 +134,6 @@
     color:var(--ink);
     position:relative;display:inline-block;
   }
-  .stamp{
-    position:absolute;top:-16px;right:-86px;
-    transform:rotate(-7deg);
-    border:2px solid var(--green);color:var(--green-deep);
-    font-family:'Noto Serif TC',serif;font-weight:700;
-    font-size:15px;letter-spacing:.28em;
-    padding:5px 8px 5px 12px;border-radius:3px;
-    background:rgba(78,158,72,.07);
-    white-space:nowrap;
-  }
   .hero .lead{
     max-width:640px;margin:26px auto 10px;
     font-size:16.5px;color:var(--ink-soft);
@@ -182,7 +172,6 @@
     font-family:'Space Grotesk',sans-serif;letter-spacing:-.025em;
   }
   html[lang="en"] .hero h1{line-height:1.12}
-  html[lang="en"] .stamp{font-family:'Space Grotesk',sans-serif;letter-spacing:.12em;font-size:12px}
 
   /* About */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
@@ -278,7 +267,6 @@
     .about-grid{grid-template-columns:1fr;gap:28px}
     .cards{grid-template-columns:1fr}
     .foot-inner{grid-template-columns:1fr;gap:36px}
-    .stamp{right:-6px;top:-48px}
     .nav-zh{display:none}
     .nav-links{gap:12px}
   }
@@ -321,9 +309,7 @@
   <div class="hero-inner">
     <div class="hero-logo logo-bg" role="img" aria-label="TAITA SoCal 會徽" data-i18n-aria="emblemAria"></div>
     <div class="eyebrow en">TAIWANESE AMERICAN INDUSTRIAL TECHNOLOGY ASSOCIATION</div>
-    <h1><span data-i18n="heroTitle">南加州<br>台美產業科技協會</span>
-      <span class="stamp" data-i18n="preparing">籌備中</span>
-    </h1>
+    <h1><span data-i18n="heroTitle">南加州<br>台美產業科技協會</span></h1>
     <p class="lead" data-i18n="heroLead">我們把 TAITA 二十多年來連結台灣與美國科技產業的橋樑，延伸到南加州。從航太、半導體到生技與娛樂科技——這裡是下一段旅程的起點。</p>
     <p class="lead-en en" data-i18n="heroTagline">Bridging Taiwan and Southern California — industry, technology, and the people who build both.</p>
     <div class="hero-cta">
@@ -493,7 +479,7 @@
       emblemAria: 'TAITA SoCal 會徽',
       orgShort: '南加州台美產業科技協會',
       navAbout: '關於', navFocus: '焦點工作', navEvents: '活動', navContact: '聯絡',
-      foundingMember: '成為創始會員', meetTaita: '認識 TAITA', preparing: '籌備中',
+      foundingMember: '成為創始會員', meetTaita: '認識 TAITA',
       heroTitle: '南加州<br>台美產業科技協會',
       heroLead: '我們把 TAITA 二十多年來連結台灣與美國科技產業的橋樑，延伸到南加州。從航太、半導體到生技與娛樂科技——這裡是下一段旅程的起點。',
       heroTagline: 'Bridging Taiwan and Southern California — industry, technology, and the people who build both.',
@@ -528,7 +514,7 @@
       emblemAria: 'TAITA SoCal emblem',
       orgShort: 'TAITA Southern California',
       navAbout: 'About', navFocus: 'What We Do', navEvents: 'Events', navContact: 'Contact',
-      foundingMember: 'Become a Founding Member', meetTaita: 'Meet TAITA', preparing: 'COMING SOON',
+      foundingMember: 'Become a Founding Member', meetTaita: 'Meet TAITA',
       heroTitle: 'TAITA<br>Southern California',
       heroLead: 'For more than two decades, TAITA has connected Taiwan and the United States through technology and industry. We are extending that bridge to Southern California—from aerospace and semiconductors to biotech and entertainment technology.',
       heroTagline: 'Bridging Taiwan and Southern California — industry, technology, and the people who build both.',
