@@ -120,11 +120,12 @@
     margin:0 auto 22px;mix-blend-mode:multiply;
   }
   .eyebrow{
-    display:inline-flex;align-items:center;gap:10px;
+    display:flex;align-items:center;gap:10px;
+    width:fit-content;max-width:100%;
     font-family:'IBM Plex Mono',monospace;
     font-size:11.5px;letter-spacing:.22em;
     color:var(--muted);
-    margin-bottom:26px;
+    margin:0 auto 26px;
   }
   .eyebrow::before{content:'';width:8px;height:8px;background:var(--green);border-radius:1px}
   .hero h1{
@@ -132,7 +133,8 @@
     font-size:clamp(2.2rem,5.4vw,3.9rem);
     line-height:1.3;letter-spacing:.04em;
     color:var(--ink);
-    position:relative;display:inline-block;
+    position:relative;display:block;
+    width:fit-content;max-width:100%;margin:0 auto;
   }
   .hero .lead{
     max-width:640px;margin:26px auto 10px;
