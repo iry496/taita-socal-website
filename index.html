@@ -118,6 +118,7 @@
   .btn{
     display:inline-block;padding:12px 26px;border-radius:4px;
     font-weight:700;font-size:15px;letter-spacing:.04em;
+    font-family:inherit;line-height:1.5;text-align:center;
     transition:transform .18s, box-shadow .18s, background .18s, color .18s;
     cursor:pointer;border:none;
   }
@@ -272,11 +273,46 @@
   .join .sec-eyebrow{justify-content:center}
   .join-cta{margin-top:38px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
+  /* Contact dialog */
+  .contact-dialog{
+    width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 32px);
+    margin:auto;padding:0;border:1px solid var(--line);border-radius:14px;
+    background:#fff;color:var(--ink);box-shadow:0 28px 80px rgba(24,36,24,.28);
+  }
+  .contact-dialog::backdrop{background:rgba(24,31,24,.58);backdrop-filter:blur(4px)}
+  .dialog-inner{padding:38px;position:relative}
+  .dialog-close{
+    position:absolute;top:16px;right:16px;width:38px;height:38px;
+    border:1px solid var(--line);border-radius:999px;background:var(--paper);
+    color:var(--ink);font-size:24px;line-height:1;cursor:pointer;
+  }
+  .dialog-close:hover{background:#EAF4E4}
+  .dialog-close:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+  .dialog-inner .sec-eyebrow{margin-bottom:14px}
+  .dialog-inner h2{
+    font-family:'Noto Serif TC',serif;font-size:clamp(1.55rem,4vw,2rem);
+    line-height:1.4;margin-right:38px;
+  }
+  html[lang="en"] .dialog-inner h2{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
+  .dialog-copy{margin-top:14px;color:var(--muted);font-size:15px}
+  .dialog-email{
+    display:flex;align-items:center;gap:10px;width:fit-content;
+    margin-top:22px;color:var(--green-deep);font-family:'IBM Plex Mono',monospace;
+    font-size:14px;font-weight:500;
+  }
+  .dialog-email svg{width:18px;height:18px;flex:none}
+  .dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+  .dialog-actions .btn{padding:11px 16px;font-size:13px}
+  #copyEmail{grid-column:1/-1}
+  .btn-soft{background:#EDF6E8;color:var(--green-deep);border:1px solid #D8E9D0}
+  .btn-soft:hover{background:#E2F0DA}
+  .copy-status{min-height:1.6em;margin-top:12px;color:var(--green-deep);font-size:12px}
+
   /* Footer */
   footer{background:#262B25;color:#fff}
   .foot-inner{
     max-width:1160px;margin:0 auto;padding:64px 24px 28px;
-    display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px;
+    display:grid;grid-template-columns:1.45fr .7fr 1fr 1.05fr;gap:38px;
   }
   .foot-org{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
   .foot-logo{
@@ -290,6 +326,20 @@
   .foot li{margin-bottom:10px}
   .foot a{color:rgba(255,255,255,.78);font-size:14px}
   .foot a:hover{color:#9FD48F}
+  .chapter-link{display:inline-flex;flex-direction:column;line-height:1.45}
+  .chapter-link small{color:rgba(255,255,255,.42);font-size:11px}
+  .social-label{margin:24px 0 12px;color:rgba(255,255,255,.5);font-size:12px}
+  .social-links{display:flex;gap:9px;flex-wrap:wrap}
+  .social-link{
+    width:34px;height:34px;display:inline-grid;place-items:center;
+    border:1px solid rgba(255,255,255,.18);border-radius:8px;
+    color:rgba(255,255,255,.82);transition:background .18s,border-color .18s,color .18s,transform .18s;
+  }
+  .social-link svg{width:17px;height:17px;fill:currentColor}
+  .social-link[href]:hover{
+    color:#fff;background:var(--green-btn);border-color:var(--green-bright);transform:translateY(-2px);
+  }
+  .social-link[aria-disabled="true"]{opacity:.38;cursor:not-allowed}
   .foot-bottom{
     max-width:1160px;margin:0 auto;padding:22px 24px;
     border-top:1px solid var(--line-ink);
@@ -311,7 +361,7 @@
   @media (max-width: 860px){
     .about-grid{grid-template-columns:1fr;gap:28px}
     .cards{grid-template-columns:1fr}
-    .foot-inner{grid-template-columns:1fr;gap:36px}
+    .foot-inner{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px}
     .nav-zh{display:none}
     .nav-links{gap:12px}
   }
@@ -326,6 +376,12 @@
     .nav-logo{width:62px;height:36px}
     .nav .btn{padding:9px 12px;font-size:12px}
     .lang-toggle{padding:8px 9px;font-size:10px}
+    .dialog-inner{padding:32px 22px 24px}
+    .dialog-actions{grid-template-columns:1fr}
+    .dialog-actions .btn{width:100%}
+  }
+  @media (max-width: 560px){
+    .foot-inner{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -462,7 +518,7 @@
       <p data-i18n="eventsText">我們正在籌備 TAITA SoCal 成立大會與第一場產業論壇。留下 Email，第一時間收到時間與地點。</p>
       <div class="chip" data-i18n="eventsChip">2026 秋季 · 大洛杉磯地區 · 詳情待公布</div>
       <div>
-        <a class="btn btn-white" href="mailto:info@taitasocal.org?subject=%E5%8A%A0%E5%85%A5%20TAITA%20SoCal%20%E6%88%90%E7%AB%8B%E9%80%9A%E7%9F%A5%E5%90%8D%E5%96%AE" data-i18n="notifyButton" data-i18n-href="notifyHref">加入通知名單</a>
+        <button class="btn btn-white contact-trigger" type="button" data-contact="updates" data-i18n="notifyButton">加入通知名單</button>
       </div>
     </div>
   </section>
@@ -475,11 +531,31 @@
     <h2 class="display" data-i18n="foundingMember">成為創始會員</h2>
     <p data-i18n="joinText">只要你在南加州從事科技或產業相關工作——工程師、研究員、創業者、投資人、學生——都歡迎加入。創始會員將一起參與分會章程、理事會與第一年活動的規劃。</p>
     <div class="join-cta">
-      <a class="btn btn-green" href="mailto:info@taitasocal.org?subject=TAITA%20SoCal%20%E5%85%A5%E6%9C%83%E6%84%8F%E9%A1%98" data-i18n="joinButton" data-i18n-href="joinHref">我要加入</a>
-      <a class="btn btn-ink" href="mailto:info@taitasocal.org?subject=%E4%BC%81%E6%A5%AD%E8%B4%8A%E5%8A%A9%E5%90%88%E4%BD%9C" data-i18n="sponsorButton" data-i18n-href="sponsorHref">企業贊助合作</a>
+      <button class="btn btn-green contact-trigger" type="button" data-contact="join" data-i18n="joinButton">我要加入</button>
+      <button class="btn btn-ink contact-trigger" type="button" data-contact="sponsor" data-i18n="sponsorButton">企業贊助合作</button>
     </div>
   </div>
 </section>
+
+<!-- ============ CONTACT DIALOG ============ -->
+<dialog class="contact-dialog" id="contactDialog" aria-labelledby="contactDialogTitle">
+  <div class="dialog-inner">
+    <button class="dialog-close" id="contactDialogClose" type="button" data-i18n-aria="closeDialogAria">&times;</button>
+    <div class="sec-eyebrow" data-i18n="contactEyebrow">EMAIL 聯絡</div>
+    <h2 id="contactDialogTitle">聯絡 TAITA SoCal</h2>
+    <p class="dialog-copy" id="contactDialogCopy"></p>
+    <a class="dialog-email" id="contactEmailLink" href="mailto:info@taitasocal.org">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+      info@taitasocal.org
+    </a>
+    <div class="dialog-actions">
+      <a class="btn btn-green" id="contactGmail" href="https://mail.google.com/" target="_blank" rel="noopener noreferrer" data-i18n="openGmail">用 Gmail 撰寫</a>
+      <a class="btn btn-soft" id="contactMailto" href="mailto:info@taitasocal.org" data-i18n="openEmailApp">開啟 Email App</a>
+      <button class="btn btn-ink" id="copyEmail" type="button" data-i18n="copyEmail">複製 Email</button>
+    </div>
+    <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+  </div>
+</dialog>
 
 <!-- ============ FOOTER ============ -->
 <footer id="contact">
@@ -501,11 +577,46 @@
       </ul>
     </div>
     <div class="foot">
+      <h4 data-i18n="sisterChaptersTitle">SISTER CHAPTERS</h4>
+      <ul>
+        <li>
+          <a class="chapter-link" href="https://taiwaneseamericanhistory.org/taita-east-coast/" target="_blank" rel="noopener noreferrer">
+            <span>TAITA EAST ↗</span>
+            <small data-i18n="eastChapterNote">美東分會歷史資料</small>
+          </a>
+        </li>
+        <li>
+          <a class="chapter-link" href="https://www.taita.org/" target="_blank" rel="noopener noreferrer">
+            <span>TAITA SV ↗</span>
+            <small data-i18n="svChapterNote">矽谷分會官方網站</small>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="foot">
       <h4>CONTACT</h4>
       <ul>
         <li><a href="mailto:info@taitasocal.org" class="mono" style="font-size:13px">info@taitasocal.org</a></li>
         <li><span style="color:rgba(255,255,255,.55);font-size:13px" data-i18n="region">大洛杉磯 · 橘郡 · 聖地牙哥</span></li>
       </ul>
+      <div class="social-label" data-i18n="socialLabel">關注我們 · 帳號建立後啟用</div>
+      <div class="social-links" data-i18n-aria="socialAria" aria-label="TAITA SoCal 社群媒體">
+        <a class="social-link" data-social="facebook" data-platform="Facebook" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06Z"/></svg>
+        </a>
+        <a class="social-link" data-social="instagram" data-platform="Instagram" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.81 5.81 0 0 1 22 7.8v8.4a5.81 5.81 0 0 1-5.8 5.8H7.8A5.81 5.81 0 0 1 2 16.2V7.8A5.81 5.81 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
+        </a>
+        <a class="social-link" data-social="threads" data-platform="Threads" aria-label="Threads">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.3 2C7 2 3.6 5.8 3.6 12.1c0 6.1 3.4 9.9 8.9 9.9 4.8 0 7.8-2.7 7.8-6.8 0-3.4-2-5.4-5.6-5.9-.3-1.4-1.2-2.4-2.7-2.4-1.7 0-2.9 1.1-2.9 2.7h2c0-.6.3-1 1-1 .6 0 1 .4 1.1 1-3.3.4-5.3 2.1-5.3 4.6 0 2.3 1.7 3.9 4.2 3.9 3.1 0 5.1-2.1 5.1-5.4 0-.4 0-.7-.1-1.1.8.5 1.2 1.6 1.2 3.5 0 3.1-2.1 4.9-5.8 4.9-4.3 0-6.8-3-6.8-7.9C5.7 7 8.2 4 12.3 4c3.3 0 5.4 1.7 6.3 5l2-.6C19.5 4.2 16.5 2 12.3 2Zm-.1 14.2c-1.4 0-2.3-.8-2.3-2 0-1.5 1.3-2.5 3.5-2.8.1.4.1.8.1 1.2 0 2.3-.5 3.6-1.3 3.6Z"/></svg>
+        </a>
+        <a class="social-link" data-social="linkedin" data-platform="LinkedIn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.2H3V21h3.5V8.2ZM4.75 2A2.05 2.05 0 1 0 4.75 6.1 2.05 2.05 0 0 0 4.75 2ZM21 13.65c0-3.86-2.06-5.66-4.82-5.66-2.22 0-3.22 1.22-3.77 2.08V8.2H8.9V21h3.51v-6.34c0-1.67.32-3.3 2.4-3.3 2.05 0 2.08 1.92 2.08 3.41V21H21v-7.35Z"/></svg>
+        </a>
+        <a class="social-link" data-social="youtube" data-platform="YouTube" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.55 3.6 12 3.6 12 3.6s-7.55 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.85.5 9.4.5 9.4.5s7.55 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
   <div class="foot-bottom">
@@ -542,13 +653,17 @@
       eventsEyebrow: '活動 — EVENTS', eventsTitle: '成立大會，即將啟程。',
       eventsText: '我們正在籌備 TAITA SoCal 成立大會與第一場產業論壇。留下 Email，第一時間收到時間與地點。',
       eventsChip: '2026 秋季 · 大洛杉磯地區 · 詳情待公布', notifyButton: '加入通知名單',
-      notifyHref: 'mailto:info@taitasocal.org?subject=%E5%8A%A0%E5%85%A5%20TAITA%20SoCal%20%E6%88%90%E7%AB%8B%E9%80%9A%E7%9F%A5%E5%90%8D%E5%96%AE',
       joinEyebrow: '入會 — JOIN US', joinText: '只要你在南加州從事科技或產業相關工作——工程師、研究員、創業者、投資人、學生——都歡迎加入。創始會員將一起參與分會章程、理事會與第一年活動的規劃。',
       joinButton: '我要加入', sponsorButton: '企業贊助合作',
-      joinHref: 'mailto:info@taitasocal.org?subject=TAITA%20SoCal%20%E5%85%A5%E6%9C%83%E6%84%8F%E9%A1%98',
-      sponsorHref: 'mailto:info@taitasocal.org?subject=%E4%BC%81%E6%A5%AD%E8%B4%8A%E5%8A%A9%E5%90%88%E4%BD%9C',
+      contactEyebrow: 'EMAIL 聯絡', closeDialogAria: '關閉聯絡視窗',
+      openGmail: '用 Gmail 撰寫', openEmailApp: '開啟 Email App', copyEmail: '複製 Email', copiedEmail: '已複製 info@taitasocal.org', copyFailed: '請手動複製 info@taitasocal.org',
+      contactJoinTitle: '加入 TAITA SoCal', contactJoinText: '點選下方選項寄信給我們。我們會回覆入會資訊與下一步。', contactJoinSubject: 'TAITA SoCal 入會意願', contactJoinBody: '您好，我想加入 TAITA SoCal，請提供入會資訊與下一步。謝謝！',
+      contactSponsorTitle: '企業贊助合作', contactSponsorText: '點選下方選項與我們聯絡，我們會回覆企業贊助與合作資訊。', contactSponsorSubject: 'TAITA SoCal 企業贊助合作', contactSponsorBody: '您好，我想了解 TAITA SoCal 的企業贊助與合作方式，請與我聯絡。謝謝！',
+      contactUpdatesTitle: '加入活動通知名單', contactUpdatesText: '寄信給我們，即可收到成立大會與最新活動資訊。', contactUpdatesSubject: '加入 TAITA SoCal 活動通知名單', contactUpdatesBody: '您好，我想加入 TAITA SoCal 活動通知名單。謝謝！',
       footerOrg: '南加州台美產業科技協會<br>Southern California Taiwanese American<br>Industrial Technology Association',
       footerAbout: '關於我們', footerJoin: '入會', region: '大洛杉磯 · 橘郡 · 聖地牙哥',
+      sisterChaptersTitle: '姊妹分會', eastChapterNote: '美東分會歷史資料', svChapterNote: '矽谷分會官方網站',
+      socialLabel: '關注我們 · 帳號建立後啟用', socialAria: 'TAITA SoCal 社群媒體', socialPending: '帳號建立後啟用',
       footerTagline: '連結南加州與台灣的產業、科技與人'
     },
     en: {
@@ -577,13 +692,17 @@
       eventsEyebrow: 'EVENTS', eventsTitle: 'Our launch event is taking flight.',
       eventsText: 'We are preparing the TAITA SoCal launch celebration and our first industry forum. Join the email list to be the first to receive the date and location.',
       eventsChip: 'FALL 2026 · GREATER LOS ANGELES · DETAILS TO COME', notifyButton: 'Join the Email List',
-      notifyHref: 'mailto:info@taitasocal.org?subject=TAITA%20SoCal%20Launch%20Updates',
       joinEyebrow: 'JOIN US', joinText: 'If you work or study in technology or industry in Southern California—as an engineer, researcher, founder, investor, or student—you are welcome here. Founding members will help shape our bylaws, board, and first year of programming.',
       joinButton: 'I Want to Join', sponsorButton: 'Corporate Sponsorship',
-      joinHref: 'mailto:info@taitasocal.org?subject=TAITA%20SoCal%20Membership%20Interest',
-      sponsorHref: 'mailto:info@taitasocal.org?subject=TAITA%20SoCal%20Corporate%20Sponsorship',
+      contactEyebrow: 'EMAIL CONTACT', closeDialogAria: 'Close contact window',
+      openGmail: 'Compose in Gmail', openEmailApp: 'Open Email App', copyEmail: 'Copy Email', copiedEmail: 'Copied info@taitasocal.org', copyFailed: 'Please copy info@taitasocal.org manually',
+      contactJoinTitle: 'Join TAITA SoCal', contactJoinText: 'Choose an option below to email us. We will reply with membership information and next steps.', contactJoinSubject: 'TAITA SoCal Membership Interest', contactJoinBody: 'Hello, I would like to join TAITA SoCal. Please send me membership information and next steps. Thank you!',
+      contactSponsorTitle: 'Corporate Sponsorship', contactSponsorText: 'Choose an option below to contact us. We will reply with sponsorship and partnership information.', contactSponsorSubject: 'TAITA SoCal Corporate Sponsorship', contactSponsorBody: 'Hello, I would like to learn about corporate sponsorship and partnership opportunities with TAITA SoCal. Please contact me. Thank you!',
+      contactUpdatesTitle: 'Join the Event Email List', contactUpdatesText: 'Email us to receive launch celebration and event updates.', contactUpdatesSubject: 'TAITA SoCal Event Updates', contactUpdatesBody: 'Hello, I would like to join the TAITA SoCal event email list. Thank you!',
       footerOrg: 'Southern California Chapter<br>Taiwanese American Industrial<br>Technology Association',
       footerAbout: 'About Us', footerJoin: 'Membership', region: 'Greater Los Angeles · Orange County · San Diego',
+      sisterChaptersTitle: 'SISTER CHAPTERS', eastChapterNote: 'East Coast chapter archive', svChapterNote: 'Silicon Valley official site',
+      socialLabel: 'Follow us · activates when ready', socialAria: 'TAITA SoCal social media', socialPending: 'account coming soon',
       footerTagline: 'Connecting Southern California and Taiwan through industry, technology, and people'
     }
   };
@@ -591,6 +710,67 @@
   const langToggle = document.getElementById('langToggle');
   const langEn = document.getElementById('langEn');
   const langZh = document.getElementById('langZh');
+  const contactDialog = document.getElementById('contactDialog');
+  const contactDialogTitle = document.getElementById('contactDialogTitle');
+  const contactDialogCopy = document.getElementById('contactDialogCopy');
+  const contactEmailLink = document.getElementById('contactEmailLink');
+  const contactMailto = document.getElementById('contactMailto');
+  const contactGmail = document.getElementById('contactGmail');
+  const copyStatus = document.getElementById('copyStatus');
+  const contactEmail = 'info@taitasocal.org';
+  let currentContactKind = 'join';
+
+  // Add the live profile URLs here as each TAITA SoCal account launches.
+  const socialProfiles = {
+    facebook: '',
+    instagram: '',
+    threads: '',
+    linkedin: '',
+    youtube: ''
+  };
+
+  function activeLanguage() {
+    return document.documentElement.lang === 'zh-Hant' ? 'zh' : 'en';
+  }
+
+  function updateSocialLinks(copy) {
+    document.querySelectorAll('[data-social]').forEach(link => {
+      const url = socialProfiles[link.dataset.social];
+      const platform = link.dataset.platform;
+      if (url) {
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.removeAttribute('aria-disabled');
+        link.removeAttribute('tabindex');
+        link.title = platform;
+        link.setAttribute('aria-label', platform);
+      } else {
+        link.removeAttribute('href');
+        link.removeAttribute('target');
+        link.removeAttribute('rel');
+        link.setAttribute('aria-disabled', 'true');
+        link.setAttribute('tabindex', '-1');
+        link.title = `${platform} — ${copy.socialPending}`;
+        link.setAttribute('aria-label', `${platform} — ${copy.socialPending}`);
+      }
+    });
+  }
+
+  function updateContactDialog(kind) {
+    currentContactKind = kind;
+    const copy = translations[activeLanguage()];
+    const key = kind.charAt(0).toUpperCase() + kind.slice(1);
+    const subject = copy[`contact${key}Subject`];
+    const body = copy[`contact${key}Body`];
+    const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    contactDialogTitle.textContent = copy[`contact${key}Title`];
+    contactDialogCopy.textContent = copy[`contact${key}Text`];
+    contactEmailLink.href = mailto;
+    contactMailto.href = mailto;
+    contactGmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    copyStatus.textContent = '';
+  }
 
   function applyLanguage(lang) {
     const selected = translations[lang] ? lang : 'zh';
@@ -608,15 +788,13 @@
       const value = copy[el.dataset.i18nAria];
       if (value !== undefined) el.setAttribute('aria-label', value);
     });
-    document.querySelectorAll('[data-i18n-href]').forEach(el => {
-      const value = copy[el.dataset.i18nHref];
-      if (value !== undefined) el.setAttribute('href', value);
-    });
+    updateSocialLinks(copy);
     const isZh = selected === 'zh';
     langZh.classList.toggle('active', isZh);
     langEn.classList.toggle('active', !isZh);
     langToggle.setAttribute('aria-pressed', String(isZh));
     langToggle.setAttribute('aria-label', isZh ? 'Switch to English' : '切換為繁體中文');
+    if (contactDialog.open) updateContactDialog(currentContactKind);
     try { localStorage.setItem('taita-language', selected); } catch (error) { /* storage may be unavailable */ }
   }
 
@@ -626,6 +804,37 @@
   applyLanguage(savedLanguage || browserLanguage);
   langToggle.addEventListener('click', () => {
     applyLanguage(document.documentElement.lang === 'zh-Hant' ? 'en' : 'zh');
+  });
+
+  document.querySelectorAll('.contact-trigger').forEach(button => {
+    button.addEventListener('click', () => {
+      updateContactDialog(button.dataset.contact);
+      contactDialog.showModal();
+    });
+  });
+  document.getElementById('contactDialogClose').addEventListener('click', () => contactDialog.close());
+  contactDialog.addEventListener('click', event => {
+    const rect = contactDialog.getBoundingClientRect();
+    const isOutside = event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
+    if (isOutside) contactDialog.close();
+  });
+  document.getElementById('copyEmail').addEventListener('click', async () => {
+    const copy = translations[activeLanguage()];
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(contactEmail);
+      copied = true;
+    } catch (error) {
+      const field = document.createElement('textarea');
+      field.value = contactEmail;
+      field.style.position = 'fixed';
+      field.style.opacity = '0';
+      document.body.appendChild(field);
+      field.select();
+      copied = document.execCommand('copy');
+      field.remove();
+    }
+    copyStatus.textContent = copied ? copy.copiedEmail : copy.copyFailed;
   });
 
   // Scroll reveal
