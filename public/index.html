@@ -394,6 +394,10 @@
   }
 
   /* Responsive */
+  @media (max-width: 1100px){
+    .nav-zh{display:none}
+    .nav-links{gap:12px}
+  }
   @media (max-width: 860px){
     .about-grid{grid-template-columns:1fr;gap:28px}
     .cards{grid-template-columns:1fr}
@@ -403,6 +407,8 @@
   }
   @media (max-width: 720px){
     .nav-links a:not(.btn){display:none}
+    .nav-links a.nav-page{display:inline-block;font-size:12px}
+    .nav-links a.btn{display:none}
     .facts{grid-template-columns:1fr;border-top:none}
     .fact{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:16px}
     .section{padding:76px 20px}
@@ -434,6 +440,8 @@
       <a href="#about" data-i18n="navAbout">關於</a>
       <a href="#focus" data-i18n="navFocus">焦點工作</a>
       <a href="#events" data-i18n="navEvents">活動</a>
+      <a href="/gallery.html" class="nav-page" data-i18n="navGallery">活動相簿</a>
+      <a href="/news.html" class="nav-page" data-i18n="navNews">最新消息</a>
       <a href="#contact" data-i18n="navContact">聯絡</a>
       <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to English" aria-pressed="false">
         <span id="langEn">EN</span><span class="lang-divider" aria-hidden="true">/</span><span id="langZh" class="active">中文</span>
@@ -642,6 +650,8 @@
         <li><a href="#about" data-i18n="footerAbout">關於我們</a></li>
         <li><a href="#focus" data-i18n="navFocus">焦點工作</a></li>
         <li><a href="#events" data-i18n="navEvents">活動</a></li>
+        <li><a href="/gallery.html" data-i18n="navGallery">活動相簿</a></li>
+        <li><a href="/news.html" data-i18n="navNews">最新消息</a></li>
         <li><a href="#join" data-i18n="footerJoin">入會</a></li>
       </ul>
     </div>
@@ -703,7 +713,7 @@
       homeAria: 'TAITA SoCal 首頁',
       emblemAria: 'TAITA SoCal 會徽',
       orgShort: '南加州台美產業科技協會',
-      navAbout: '關於', navFocus: '焦點工作', navEvents: '活動', navContact: '聯絡',
+      navAbout: '關於', navFocus: '焦點工作', navEvents: '活動', navGallery: '活動相簿', navNews: '最新消息', navContact: '聯絡',
       foundingMember: '成為創始會員', meetTaita: '認識 TAITA',
       heroTitle: '南加州<br>台美產業科技協會',
       heroLead: '我們把 TAITA 二十多年來連結台灣與美國科技產業的橋樑，延伸到南加州。從航太、半導體到生技與娛樂科技——這裡是下一段旅程的起點。',
@@ -744,7 +754,7 @@
       homeAria: 'TAITA SoCal home',
       emblemAria: 'TAITA SoCal emblem',
       orgShort: 'TAITA Southern California',
-      navAbout: 'About', navFocus: 'What We Do', navEvents: 'Events', navContact: 'Contact',
+      navAbout: 'About', navFocus: 'What We Do', navEvents: 'Events', navGallery: 'Gallery', navNews: 'News', navContact: 'Contact',
       foundingMember: 'Become a Founding Member', meetTaita: 'Meet TAITA',
       heroTitle: 'TAITA<br>Southern California',
       heroLead: 'For more than two decades, TAITA has connected Taiwan and the United States through technology and industry. We are extending that bridge to Southern California—from aerospace and semiconductors to biotech and entertainment technology.',
