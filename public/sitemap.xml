@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://taitasocal.org/</loc>
-    <lastmod>2026-08-09</lastmod>
+    <lastmod>2026-08-11</lastmod>
+  </url>
+  <url>
+    <loc>https://taitasocal.org/gallery.html</loc>
+    <lastmod>2026-08-11</lastmod>
+  </url>
+  <url>
+    <loc>https://taitasocal.org/news.html</loc>
+    <lastmod>2026-08-11</lastmod>
   </url>
 </urlset>
