@@ -20,8 +20,8 @@ npx wrangler dev --var CONTACT_RECIPIENT:test@example.com
 
 The production site is published from the `main` branch through Cloudflare
 Workers Builds. Static assets remain free; only requests to `/api/contact`
-invoke the Worker. Production requires the `CONTACT_RECIPIENT` Worker variable
-to contain a verified Cloudflare Email Routing destination address.
+invoke the Worker. The `CONTACT_RECIPIENT` Worker variable is configured in
+`wrangler.jsonc` and must be a verified Cloudflare Email Routing destination.
 
 The root `index.html` is a compatibility redirect for the legacy GitHub Pages
 URL; the production assets live in `public/`.
